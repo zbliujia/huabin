@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/zbliujia/huabin/issues"
   },
-  "homepage": "https://github.com/zbliujia/huabin#readme"
+  "homepage": "https://github.com/zbliujia/huabin#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
