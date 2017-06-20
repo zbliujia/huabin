@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.golfbaba.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.golfbaba.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">北京华彬第三方统计接口</wsdl:documentation>
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://www.golfbaba.com/">
+            <s:element name="Test">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="cardNo" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="TestResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="TestResult" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAmountStatistical">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="starDate" type="s:dateTime" />
+                        <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAmountStatisticalResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="GetAmountStatisticalResult" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="infos" type="tns:ArrayOfAmountList" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfAmountList">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="AmountList" nillable="true" type="tns:AmountList" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="AmountList">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetAmountPayment">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="starDate" type="s:dateTime" />
+                        <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAmountPaymentResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="GetAmountPaymentResult" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="infos" type="tns:ArrayOfAmountList" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPaymentSingle">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="starDate" type="s:dateTime" />
+                        <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPaymentSingleResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="GetPaymentSingleResult" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="infos" type="tns:ArrayOfAmountList" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="TestSoapIn">
+        <wsdl:part name="parameters" element="tns:Test" />
+    </wsdl:message>
+    <wsdl:message name="TestSoapOut">
+        <wsdl:part name="parameters" element="tns:TestResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetAmountStatisticalSoapIn">
+        <wsdl:part name="parameters" element="tns:GetAmountStatistical" />
+    </wsdl:message>
+    <wsdl:message name="GetAmountStatisticalSoapOut">
+        <wsdl:part name="parameters" element="tns:GetAmountStatisticalResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetAmountPaymentSoapIn">
+        <wsdl:part name="parameters" element="tns:GetAmountPayment" />
+    </wsdl:message>
+    <wsdl:message name="GetAmountPaymentSoapOut">
+        <wsdl:part name="parameters" element="tns:GetAmountPaymentResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetPaymentSingleSoapIn">
+        <wsdl:part name="parameters" element="tns:GetPaymentSingle" />
+    </wsdl:message>
+    <wsdl:message name="GetPaymentSingleSoapOut">
+        <wsdl:part name="parameters" element="tns:GetPaymentSingleResponse" />
+    </wsdl:message>
+    <wsdl:portType name="ThirdCensusServiceSoap">
+        <wsdl:operation name="Test">
+            <wsdl:input message="tns:TestSoapIn" />
+            <wsdl:output message="tns:TestSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetAmountStatistical">
+            <wsdl:input message="tns:GetAmountStatisticalSoapIn" />
+            <wsdl:output message="tns:GetAmountStatisticalSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetAmountPayment">
+            <wsdl:input message="tns:GetAmountPaymentSoapIn" />
+            <wsdl:output message="tns:GetAmountPaymentSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetPaymentSingle">
+            <wsdl:input message="tns:GetPaymentSingleSoapIn" />
+            <wsdl:output message="tns:GetPaymentSingleSoapOut" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ThirdCensusServiceSoap" type="tns:ThirdCensusServiceSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="Test">
+            <soap:operation soapAction="http://www.golfbaba.com/Test" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAmountStatistical">
+            <soap:operation soapAction="http://www.golfbaba.com/GetAmountStatistical" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAmountPayment">
+            <soap:operation soapAction="http://www.golfbaba.com/GetAmountPayment" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPaymentSingle">
+            <soap:operation soapAction="http://www.golfbaba.com/GetPaymentSingle" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ThirdCensusServiceSoap12" type="tns:ThirdCensusServiceSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="Test">
+            <soap12:operation soapAction="http://www.golfbaba.com/Test" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAmountStatistical">
+            <soap12:operation soapAction="http://www.golfbaba.com/GetAmountStatistical" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAmountPayment">
+            <soap12:operation soapAction="http://www.golfbaba.com/GetAmountPayment" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPaymentSingle">
+            <soap12:operation soapAction="http://www.golfbaba.com/GetPaymentSingle" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ThirdCensusService">
+        <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">北京华彬第三方统计接口</wsdl:documentation>
+        <wsdl:port name="ThirdCensusServiceSoap" binding="tns:ThirdCensusServiceSoap">
+            <soap:address location="http://127.0.0.1:3000/sap" />
+        </wsdl:port>
+        <wsdl:port name="ThirdCensusServiceSoap12" binding="tns:ThirdCensusServiceSoap12">
+            <soap12:address location="http://127.0.0.1:3000/sap" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
