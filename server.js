@@ -52,10 +52,11 @@ var Test = function(args, callback) {
 };
 
 var GetAmountPayment = function(args, callback) {
-
+  console.log('GetAmountPayment coming');
   utils.getRequest(function (err, request) {
 
     if (err) {
+      console.log(err);
       callback({
         GetAmountPaymentResult: 1
       });
@@ -89,6 +90,8 @@ var GetAmountPayment = function(args, callback) {
           infos
         });
       } else {
+        console.log(err);
+        console.log(body);
         callback({
           GetAmountPaymentResult: 1
         });
