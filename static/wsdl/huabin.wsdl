@@ -203,10 +203,10 @@
     <wsdl:service name="ThirdCensusService">
         <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">北京华彬第三方统计接口</wsdl:documentation>
         <wsdl:port name="ThirdCensusServiceSoap" binding="tns:ThirdCensusServiceSoap">
-            <soap:address location="http://127.0.0.1:3000/sap" />
+            <soap:address location="http://172.16.2.76:3000/sap" />
         </wsdl:port>
         <wsdl:port name="ThirdCensusServiceSoap12" binding="tns:ThirdCensusServiceSoap12">
-            <soap12:address location="http://127.0.0.1:3000/sap" />
+            <soap12:address location="http://172.16.2.76:3000/sap" />
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
