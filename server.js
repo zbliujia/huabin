@@ -51,6 +51,18 @@ var Test = function(args, callback) {
   //});
 };
 
+var GetAmountStatistical = function (args, callback) {
+  callback({
+    GetAmountStatisticalResult: 1
+  });
+};
+
+var GetPaymentSingle = function (args, callback) {
+  callback({
+    GetPaymentSingleResult: 1
+  });
+};
+
 var GetAmountPayment = function(args, callback) {
   console.log('GetAmountPayment coming');
   utils.getRequest(function (err, request) {
@@ -106,15 +118,18 @@ app.listen(3000, function () {
     ThirdCensusService: {
       ThirdCensusServiceSoap: {
         Test,
-        GetAmountPayment
+        GetAmountPayment,
+        GetPaymentSingle,
+        GetAmountStatistical,
       },
       ThirdCensusServiceSoap12: {
         Test,
         GetAmountPayment,
+        GetPaymentSingle,
+        GetAmountStatistical,
       }
     }
   };
-
 
   soap.listen(app, '/sap', service, require('fs').readFileSync('./static/wsdl/huabin.wsdl', 'utf8'));
   console.log('Example app listening on port 3000!');
