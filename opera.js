@@ -5,8 +5,8 @@ var net = require('net');
 
 messageQueue.process(function (job, done) {
   console.log('consume job');
-  console.log(job);
-  if (job.type === 'tcp') {
+  console.log(job.data);
+  if (job.data.type === 'tcp') {
     var client = new net.Socket();
     client.connect(constValue.opera.port, constValue.opera.host, function() {
       let xml = "<Message type='PostSimple' direction='ToPMS'><PostSimple RoomNum='999994' PostType='C' SalesOutlet='03' PostNum='Z0256984' CheckNum='Z0256984' PaymentMethod='7080' ServingTime='3' TableNum='112' Covers='' TotalAmount='206600' Subtotal2='196000' Date='170605' Time='162556' UserID='tjw' ClearText='tjw' /></Message>";
@@ -19,7 +19,7 @@ messageQueue.process(function (job, done) {
     });
 
     client.on('error', function(err) {
-      job.retry = job.retry?job.retry+1:1;
+      job.data.retry = job.data.retry?job.retry+1:1;
       console.log('err: ' + err.message);
       //messageQueue.add(job);
     });
