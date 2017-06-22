@@ -9,7 +9,7 @@ messageQueue.process(function (job, done) {
   if (job.data.type === 'tcp') {
     var client = new net.Socket();
     client.connect(constValue.opera.port, constValue.opera.host, function() {
-      let xml = "<Message type='PostSimple' direction='ToPMS'><PostSimple RoomNum='999994' PostType='C' SalesOutlet='03' PostNum='Z0256984' CheckNum='Z0256984' PaymentMethod='7080' ServingTime='3' TableNum='112' Covers='' TotalAmount='206600' Subtotal2='196000' Date='170605' Time='162556' UserID='tjw' ClearText='tjw' /></Message>";
+      let xml = "<Message type='PostSimple' direction='ToPMS'><PostSimple RoomNum='9533' PostType='C' SalesOutlet='03' PostNum='Q0016561' CheckNum='Q0016561' PaymentMethod='7080' ServingTime='2' TableNum='' Covers='' TotalAmount='246000' Subtotal1='246000'  Date='170622' Time='161735' UserID='chai' ClearText='chai' /></Message>";
       client.write(Buffer.concat([Buffer.from(xml),Buffer.from([0x00])]));
     });
 
