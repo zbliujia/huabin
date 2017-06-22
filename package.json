@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/zbliujia/huabin#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
+    "bull": "^3.0.0-rc.3",
     "express": "^4.15.3",
     "express-xml-bodyparser": "^0.3.0",
     "moment": "^2.18.1",
