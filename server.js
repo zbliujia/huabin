@@ -5,9 +5,7 @@ var bodyParser = require('body-parser');
 var soapService = require('./soapService');
 var opera = require('./opera');
 
-app.use(bodyParser.json());
-
-app.post('/opera', function (req, res) {
+app.post('/opera', bodyParser.json(), function (req, res) {
   console.log(req.body);
   opera.add(req.body);
   res.json({
