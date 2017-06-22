@@ -27,6 +27,8 @@ messageQueue.process(function (job, done) {
     client.on('close', function() {
       done();
     });
+  } else {
+    done();
   }
 });
 
