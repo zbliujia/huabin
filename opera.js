@@ -17,8 +17,9 @@ messageQueue.process(function (job, done) {
     client.destroy(); // kill client after server's response
   });
 
-  client.on('error', function() {
+  client.on('error', function(err) {
     job.retry = job.retry?job.retry+1:1;
+    console.log('err: ' + err.message);
     //messageQueue.add(job);
   });
 
