@@ -36,8 +36,9 @@ messageQueue.process(function (j, done) {
 
     client.on('error', function(err) {
       console.log('err: ' + err.message);
-      job.products.ServingTime = ++ServingTime;
-      //messageQueue.add({type: 'tcp', job: job});
+      //job.products.ServingTime = ++ServingTime;
+      job.products.ServingTime += 1;
+      messageQueue.add({type: 'tcp', job: job});
     });
 
     client.on('close', function() {
@@ -47,7 +48,8 @@ messageQueue.process(function (j, done) {
     client.setTimeout(1000*30);
     client.on('timeout', () => {
       console.log('socket timeout');
-      job.products.ServingTime = ++ServingTime;
+      job.products.ServingTime += 1;
+      //job.products.ServingTime = ++ServingTime;
       //messageQueue.add({type: 'tcp', job: job});
       client.destroy();
     });
@@ -67,7 +69,7 @@ module.exports = {
         let SalesOutlet = category.substr(0,2);
         let Subtotal = category.substr(2,2);
         if (!jobs[SalesOutlet]) {
-          jobs[SalesOutlet] = {SalesOutlet, TotalAmount: 0, ServingTime: ++ServingTime, Subtotal:{}};
+          jobs[SalesOutlet] = {SalesOutlet, TotalAmount: 0, ServingTime: 1, Subtotal:{}};
         }
         jobs[SalesOutlet].TotalAmount += product.TotalAmount;
         if (!jobs[SalesOutlet].Subtotal[Subtotal]) {
