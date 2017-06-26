@@ -37,7 +37,7 @@ messageQueue.process(function (j, done) {
     client.on('error', function(err) {
       console.log('err: ' + err.message);
       job.products.ServingTime = ++ServingTime;
-      messageQueue.add({type: 'tcp', job: job});
+      //messageQueue.add({type: 'tcp', job: job});
     });
 
     client.on('close', function() {
@@ -48,7 +48,7 @@ messageQueue.process(function (j, done) {
     client.on('timeout', () => {
       console.log('socket timeout');
       job.products.ServingTime = ++ServingTime;
-      messageQueue.add({type: 'tcp', job: job});
+      //messageQueue.add({type: 'tcp', job: job});
       client.destroy();
     });
 
