@@ -3,6 +3,8 @@ var Queue = require('bull');
 var messageQueue = new Queue('opera', {redis: constValue.redis});
 var net = require('net');
 
+var ServingTime = 0;
+
 messageQueue.process(function (j, done) {
   console.log('consume job');
   console.log(j.data);
@@ -33,14 +35,23 @@ messageQueue.process(function (j, done) {
     });
 
     client.on('error', function(err) {
-      job.products.ServingTime += 1;
       console.log('err: ' + err.message);
-      //messageQueue.add(job);
+      job.products.ServingTime = ++ServingTime;
+      messageQueue.add({type: 'tcp', job: job});
     });
 
     client.on('close', function() {
       done();
     });
+
+    client.setTimeout(1000*30);
+    client.on('timeout', () => {
+      console.log('socket timeout');
+      job.products.ServingTime = ++ServingTime;
+      messageQueue.add({type: 'tcp', job: job});
+      client.destroy();
+    });
+
   } else {
     done();
   }
@@ -56,7 +67,7 @@ module.exports = {
         let SalesOutlet = category.substr(0,2);
         let Subtotal = category.substr(2,2);
         if (!jobs[SalesOutlet]) {
-          jobs[SalesOutlet] = {SalesOutlet, TotalAmount: 0, ServingTime: 1, Subtotal:{}};
+          jobs[SalesOutlet] = {SalesOutlet, TotalAmount: 0, ServingTime: ++ServingTime, Subtotal:{}};
         }
         jobs[SalesOutlet].TotalAmount += product.TotalAmount;
         if (!jobs[SalesOutlet].Subtotal[Subtotal]) {
