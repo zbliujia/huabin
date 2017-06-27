@@ -84,7 +84,7 @@ var GetPaymentSingle = function (args, callback) {
 
     request({
       method: 'POST',
-      uri: constValue.tkBaseUrl + '/Api/Front/Checkout/CountBussinessData',
+      uri: constValue.tkBaseUrl + '/Api/Front/Sap/CheckoutProductDetail',
       json: true,
       body: {
         leagueId: constValue.tkLeagueId,
@@ -99,11 +99,7 @@ var GetPaymentSingle = function (args, callback) {
       if (!error && body && body.code) {
         let infos = [];
         body.message.forEach(function (item) {
-          infos.push({AmountList:{
-            Code: trimDot(item.memberCard),
-            Name: trimDot(item.memberName),
-            Amount: item.money?item.money*100:0,
-          }})
+          infos.push({AmountList: item})
         });
         callback({
           GetPaymentSingleResult: 0,
@@ -137,7 +133,7 @@ var GetAmountPayment = function(args, callback) {
 
     request({
       method: 'POST',
-      uri: constValue.tkBaseUrl + '/Api/Front/Checkout/PracticePayMentSalesData',
+      uri: constValue.tkBaseUrl + '/Api/Front/Sap/PayMentDetail',
       json: true,
       body: {
         leagueId: constValue.tkLeagueId,
@@ -150,12 +146,8 @@ var GetAmountPayment = function(args, callback) {
     }, function (error, response, body) {
       if (!error && body && body.code) {
         let infos = [];
-        body.message.payment.forEach(function (item) {
-          infos.push({AmountList:{
-            Code: 0,
-            Name: item.name,
-            Amount: item.money?item.money*100:0,
-          }})
+        body.message.forEach(function (item) {
+          infos.push({AmountList: item})
         });
         callback({
           GetAmountPaymentResult: 0,
