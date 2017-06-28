@@ -33,7 +33,7 @@ var GetAmountStatistical = function (args, callback) {
 
     request({
       method: 'POST',
-      uri: constValue.tkBaseUrl + 'Api/Front/Checkout/PracticeCategorySalesData',
+      uri: constValue.tkBaseUrl + '/Api/Front/Sap/CountMemberDebt',
       json: true,
       body: {
         leagueId: constValue.tkLeagueId,
@@ -47,22 +47,18 @@ var GetAmountStatistical = function (args, callback) {
     }, function (error, response, body) {
       if (!error && body && body.code) {
         let infos = [];
-        body.message.outlets.forEach(function (item) {
-          infos.push({AmountList:{
-            Code: 0,
-            Name: item.outlet_name,
-            Amount: item.money?item.money:0,
-          }})
+        body.message.forEach(function (item) {
+          infos.push({AmountList: item})
         });
         callback({
-          GetAmountPaymentResult: 0,
+          GetAmountStatisticalResult: 0,
           infos
         });
       } else {
         console.log(err);
         console.log(body);
         callback({
-          GetAmountPaymentResult: 1
+          GetAmountStatisticalResult: 1
         });
       }
     });
