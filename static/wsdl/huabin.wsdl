@@ -44,6 +44,14 @@
                     <s:element minOccurs="1" maxOccurs="1" name="DATUM" type="s:string" />
                     <s:element minOccurs="1" maxOccurs="1" name="ZBILLCODE" type="s:string" />
                     <s:element minOccurs="1" maxOccurs="1" name="ZYGAMOUNT" type="s:decimal" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZYGCODE" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZROWNUM" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZXFRS" type="s:unsignedInt" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZSPBM" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZSPMS" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZSPSL" type="s:unsignedInt" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZHYBM" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZHYMC" type="s:string" />
                 </s:sequence>
             </s:complexType>
             <s:element name="GetAmountPayment">
