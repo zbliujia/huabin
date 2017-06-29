@@ -95,7 +95,9 @@ var GetPaymentSingle = function (args, callback) {
       if (!error && body && body.code) {
         let infos = [];
         body.message.forEach(function (item) {
-          //item.ZSPMS = '';
+          if (!item.ZSPMS) {
+            item.ZSPMS = '';
+          }
           infos.push({AmountList: item})
         });
         callback({
