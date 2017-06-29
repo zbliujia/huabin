@@ -52,7 +52,7 @@ var GetAmountStatistical = function (args, callback) {
         });
         callback({
           GetAmountStatisticalResult: 0,
-          infos
+          infos:{AmountList: body.message}
         });
       } else {
         console.log(err);
@@ -99,7 +99,7 @@ var GetPaymentSingle = function (args, callback) {
         });
         callback({
           GetPaymentSingleResult: 0,
-          infos
+          infos:{AmountList: body.message}
         });
       } else {
         console.log(err);
@@ -147,7 +147,7 @@ var GetAmountPayment = function(args, callback) {
         });
         callback({
           GetAmountPaymentResult: 0,
-          infos
+          infos:{AmountList: body.message}
         });
       } else {
         console.log(err);
