@@ -41,8 +41,8 @@ var GetAmountStatistical = function (args, callback) {
         person: 0,
         checkout: 0,
         report_id: 400,
-        start_date: moment(args.starDate).format('YYYY-MM-DD HH:mm:ss'),
-        end_date: moment(args.endDate).format('YYYY-MM-DD HH:mm:ss'),
+        start_date: moment(args.starDate).format('YYYYMMDDHHmmss'),
+        end_date: moment(args.endDate).format('YYYYMMDDHHmmss'),
       }
     }, function (error, response, body) {
       if (!error && body && body.code) {
@@ -88,8 +88,8 @@ var GetPaymentSingle = function (args, callback) {
         person: 0,
         checkout: 0,
         paymentName: "会员卡",
-        start_date: moment(args.starDate).format('YYYY-MM-DD HH:mm:ss'),
-        end_date: moment(args.endDate).format('YYYY-MM-DD HH:mm:ss'),
+        start_date: moment(args.starDate).format('YYYYMMDDHHmmss'),
+        end_date: moment(args.endDate).format('YYYYMMDDHHmmss'),
       }
     }, function (error, response, body) {
       if (!error && body && body.code) {
@@ -136,8 +136,8 @@ var GetAmountPayment = function(args, callback) {
         clubId: constValue.tkClubId,
         person: 0,
         checkout: 0,
-        start_date: moment(args.starDate).format('YYYY-MM-DD HH:mm:ss'),
-        end_date: moment(args.endDate).format('YYYY-MM-DD HH:mm:ss'),
+        start_date: moment(args.starDate).format('YYYYMMDDHHmmss'),
+        end_date: moment(args.endDate).format('YYYYMMDDHHmmss'),
       }
     }, function (error, response, body) {
       if (!error && body && body.code) {
