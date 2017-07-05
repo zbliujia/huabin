@@ -47,11 +47,11 @@ var GetAmountPayment = function(args, callback) {
       if (!error && body && body.code) {
         let infos = [];
         body.message.forEach(function (item) {
-          Object.keys(item).forEach((key) => {
-            if (!item[key]) {
-              item[key] = '';
-            }
-          });
+          //Object.keys(item).forEach((key) => {
+          //  if (!item[key]) {
+          //    item[key] = '';
+          //  }
+          //});
           infos.push({AmountList: item})
         });
         callback({
@@ -99,11 +99,11 @@ var GetAmountStatistical = function (args, callback) {
       if (!error && body && body.code) {
         let infos = [];
         body.message.forEach(function (item) {
-          Object.keys(item).forEach((key) => {
-            if (!item[key]) {
-              item[key] = '';
-            }
-          });
+          //Object.keys(item).forEach((key) => {
+          //  if (!item[key]) {
+          //    item[key] = '';
+          //  }
+          //});
           infos.push({AmountList: item})
         });
         callback({
@@ -151,11 +151,11 @@ var GetPaymentSingle = function (args, callback) {
       if (!error && body && body.code) {
         let infos = [];
         body.message.forEach(function (item) {
-          Object.keys(item).forEach((key) => {
-            if (!item[key]) {
-              item[key] = '';
-            }
-          });
+          //Object.keys(item).forEach((key) => {
+          //  if (!item[key]) {
+          //    item[key] = '';
+          //  }
+          //});
           infos.push({AmountList: item})
         });
         callback({
