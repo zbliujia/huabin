@@ -18,112 +18,6 @@ var Test = function(args, callback) {
   })
 };
 
-var GetAmountStatistical = function (args, callback) {
-  console.log('GetAmountStatistical coming');
-  console.log(JSON.stringify(args));
-  utils.getRequest(function (err, request) {
-
-    if (err) {
-      console.log(err);
-      callback({
-        GetAmountStatisticalResult: 1
-      });
-      return;
-    }
-
-    request({
-      method: 'POST',
-      uri: constValue.tkBaseUrl + '/Api/Front/Sap/CountMemberDebt',
-      json: true,
-      body: {
-        leagueId: constValue.tkLeagueId,
-        clubId: constValue.tkClubId,
-        person: 0,
-        checkout: 0,
-        report_id: 400,
-        start_date: moment(args.starDate).utc().format('YYYY-MM-DD HH:mm:ss'),
-        end_date: moment(args.endDate).utc().format('YYYY-MM-DD HH:mm:ss'),
-      }
-    }, function (error, response, body) {
-      if (!error && body && body.code) {
-        let infos = [];
-        body.message.forEach(function (item) {
-          Object.keys(item).forEach((key) => {
-            if (!item[key]) {
-              item[key] = '';
-            }
-          });
-          infos.push({AmountList: item})
-        });
-        callback({
-          GetAmountStatisticalResult: 0,
-          infos:{AmountList: body.message}
-        });
-      } else {
-        console.log(err);
-        console.log(body);
-        callback({
-          GetAmountStatisticalResult: 1
-        });
-      }
-    });
-  });
-};
-
-var GetPaymentSingle = function (args, callback) {
-  console.log('GetPaymentSingle coming');
-  console.log(JSON.stringify(args));
-  utils.getRequest(function (err, request) {
-
-    if (err) {
-      console.log(err);
-      callback({
-        GetPaymentSingleResult: 1
-      });
-      return;
-    }
-
-    request({
-      method: 'POST',
-      uri: constValue.tkBaseUrl + '/Api/Front/Sap/CheckoutProductDetail',
-      json: true,
-      body: {
-        leagueId: constValue.tkLeagueId,
-        clubId: constValue.tkClubId,
-        person: 0,
-        checkout: 0,
-        paymentName: "会员卡",
-        start_date: moment(args.starDate).utc().format('YYYY-MM-DD HH:mm:ss'),
-        end_date: moment(args.endDate).utc().format('YYYY-MM-DD HH:mm:ss'),
-      }
-    }, function (error, response, body) {
-      if (!error && body && body.code) {
-        let infos = [];
-        body.message.forEach(function (item) {
-          Object.keys(item).forEach((key) => {
-            if (!item[key]) {
-              item[key] = '';
-            }
-          });
-          infos.push({AmountList: item})
-        });
-        callback({
-          GetPaymentSingleResult: 0,
-          infos:{AmountList: body.message}
-        });
-      } else {
-        console.log(err);
-        console.log(body);
-        callback({
-          GetPaymentSingleResult: 1
-        });
-      }
-    });
-  });
-
-
-};
-
 var GetAmountPayment = function(args, callback) {
   console.log('GetAmountPayment coming');
   console.log(JSON.stringify(args));
@@ -173,6 +67,112 @@ var GetAmountPayment = function(args, callback) {
       }
     });
   });
+};
+
+var GetAmountStatistical = function (args, callback) {
+  console.log('GetAmountStatistical coming');
+  console.log(JSON.stringify(args));
+  utils.getRequest(function (err, request) {
+
+    if (err) {
+      console.log(err);
+      callback({
+        GetAmountStatisticalResult: 1
+      });
+      return;
+    }
+
+    request({
+      method: 'POST',
+      uri: constValue.tkBaseUrl + '/Api/Front/Sap/CheckoutProductDetail',
+      json: true,
+      body: {
+        leagueId: constValue.tkLeagueId,
+        clubId: constValue.tkClubId,
+        person: 0,
+        checkout: 0,
+        paymentName: "会员卡",
+        start_date: moment(args.starDate).utc().format('YYYY-MM-DD HH:mm:ss'),
+        end_date: moment(args.endDate).utc().format('YYYY-MM-DD HH:mm:ss'),
+      }
+    }, function (error, response, body) {
+      if (!error && body && body.code) {
+        let infos = [];
+        body.message.forEach(function (item) {
+          Object.keys(item).forEach((key) => {
+            if (!item[key]) {
+              item[key] = '';
+            }
+          });
+          infos.push({AmountList: item})
+        });
+        callback({
+          GetAmountStatisticalResult: 0,
+          infos:{AmountList: body.message}
+        });
+      } else {
+        console.log(err);
+        console.log(body);
+        callback({
+          GetAmountStatisticalResult: 1
+        });
+      }
+    });
+  });
+};
+
+var GetPaymentSingle = function (args, callback) {
+  console.log('GetPaymentSingle coming');
+  console.log(JSON.stringify(args));
+  utils.getRequest(function (err, request) {
+
+    if (err) {
+      console.log(err);
+      callback({
+        GetPaymentSingleResult: 1
+      });
+      return;
+    }
+
+    request({
+      method: 'POST',
+      uri: constValue.tkBaseUrl + '/Api/Front/Sap/CountMemberDebt',
+      json: true,
+      body: {
+        leagueId: constValue.tkLeagueId,
+        clubId: constValue.tkClubId,
+        person: 0,
+        checkout: 0,
+        report_id: 400,
+        start_date: moment(args.starDate).utc().format('YYYY-MM-DD HH:mm:ss'),
+        end_date: moment(args.endDate).utc().format('YYYY-MM-DD HH:mm:ss'),
+      }
+    }, function (error, response, body) {
+      if (!error && body && body.code) {
+        let infos = [];
+        body.message.forEach(function (item) {
+          Object.keys(item).forEach((key) => {
+            if (!item[key]) {
+              item[key] = '';
+            }
+          });
+          infos.push({AmountList: item})
+        });
+        callback({
+          GetPaymentSingleResult: 0,
+          infos:{AmountList: body.message}
+        });
+      } else {
+        console.log(err);
+        console.log(body);
+        callback({
+          GetPaymentSingleResult: 1
+        });
+      }
+    });
+  });
+
+
 };
 
 var service = {
